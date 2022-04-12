@@ -14,6 +14,8 @@ class SitesController < ApplicationController
     site = Site.find(id)
 
     render json: site.name
+  rescue ActiveRecord::RecordNotFound
+    render json: "The encoded url: #{url} was not found. Please verify that it was encoded on this site.", status: :bad_request
   end
 
   private

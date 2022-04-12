@@ -38,10 +38,20 @@ RSpec.describe SitesController, type: :controller do
     context "when the url doesn't start with the correct base url" do
       let(:encoded_url) { 'wrong.com/start' }
 
-      it 'returns a 400 error' do
+      it 'returns a 400 error for an invalid base url' do
         get :decode, params: { url: encoded_url }
         expect(response.code).to eq('400')
         expect(response.body).to eq("Encoded URL must start with #{SitesController::BASE_URL}")
+      end
+    end
+
+    context "when the decoded url doesn't match a site id" do
+      let(:encoded_url) { SitesController::BASE_URL + 'wrong' }
+
+      it 'returns a 400 error for invalid encoded url' do
+        get :decode, params: { url: encoded_url }
+        expect(response.code).to eq('400')
+        expect(response.body).to eq("The encoded url: #{encoded_url} was not found. Please verify that it was encoded on this site.")
       end
     end
   end
