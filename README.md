@@ -17,3 +17,8 @@ To get the original url back, make a request to the `sites/decode` endpoint with
 * The algorithm to decode the ID requires an array with the 62 valid characters. It will remove the base url, reverse the resulting string and loop through each character. For each character it will find its corresponding index in the list of valid characters and add that to a running sum. For each new addition to the sum, it will multiply the sum by 62 before adding the next index.
 * After decoding it will try to find the Site by the decoded ID and render the original url stored for that site.
 * If no Site is found for the decoded id, it will return a 400 error with a custom message clarifying that the encoded url must come from this application.
+
+<img width="628" alt="Valid Encode" src="https://user-images.githubusercontent.com/17998174/162893651-88d961e6-4b04-4c4e-be20-8a10f0f233d6.png">
+<img width="537" alt="Valid Decode" src="https://user-images.githubusercontent.com/17998174/162893604-0e54cd06-c4ac-4a05-9271-443f39c2825c.png">
+<img width="601" alt="Invalid Base URL" src="https://user-images.githubusercontent.com/17998174/162893684-a6a7217a-c263-46a6-aba9-71b929b85abc.png">
+<img width="854" alt="Invalid Encoded ID" src="https://user-images.githubusercontent.com/17998174/162893628-2a913ca3-5172-4f0c-9ec1-ed7a4d84589f.png">
